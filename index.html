@@ -1,0 +1,1288 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Strong with Deb | Functional Strength & Running Coach</title>
+  <meta name="description" content="Personal online coaching with Deb — Functional Strength Training (One-on-One), Couch to 5K, and Couch to 10K. Boston & Sydney Marathoner 2026.">
+  
+  <!-- Google Fonts: Plus Jakarta Sans & Outfit -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@600;700;800;900&family=Plus+Jakarta+Sans:ital,wght@0,400;0,500;0,600;0,700;0,800;1,500;1,600&display=swap" rel="stylesheet">
+  
+  <!-- Tailwind CSS CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  
+  <!-- Lucide Icons CDN -->
+  <script src="https://unpkg.com/lucide@latest"></script>
+
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            pinkPage: {
+              DEFAULT: '#FFF0F4',
+              surface: '#FFF6F8',
+              card: '#FFF8FA',
+              border: '#FECDD6',
+              borderStrong: '#FDA4AF'
+            },
+            roseBrand: {
+              50: '#FFF1F3',
+              100: '#FFE4E8',
+              200: '#FECDD6',
+              300: '#FDA4AF',
+              400: '#FB7185',
+              500: '#F43F5E',
+              600: '#E11D48',
+              700: '#BE123C',
+              800: '#9F1239',
+              900: '#881337',
+              dark: '#350612',
+              textDark: '#22040D',
+              textMuted: '#521D2A'
+            }
+          },
+          fontFamily: {
+            display: ['Outfit', 'sans-serif'],
+            sans: ['Plus Jakarta Sans', 'sans-serif']
+          }
+        }
+      }
+    }
+  </script>
+
+  <style>
+    body {
+      background-color: #FFF0F4;
+      color: #22040D;
+      font-family: 'Plus Jakarta Sans', sans-serif;
+      font-size: 17px;
+      line-height: 1.65;
+      overflow-x: hidden;
+    }
+    
+    ::selection {
+      background: #FDA4AF;
+      color: #4C0519;
+    }
+
+    html, body {
+      overflow-x: hidden;
+      max-width: 100vw;
+    }
+
+    /* Ambient Cursor Glow Effect (Active on Desktop/Laptops with Mouse) */
+    #cursor-glow {
+      pointer-events: none;
+      position: fixed;
+      width: 520px;
+      height: 520px;
+      border-radius: 50%;
+      background: radial-gradient(circle, rgba(244, 63, 94, 0.22) 0%, rgba(251, 113, 133, 0.12) 30%, rgba(255, 175, 189, 0.05) 55%, transparent 70%);
+      transform: translate(-50%, -50%);
+      z-index: 1;
+      transition: transform 0.08s ease-out;
+      will-change: transform, left, top;
+    }
+
+    /* Disable cursor glow on touch screens (phones/tablets) to preserve battery and touch smoothness */
+    @media (hover: none) and (pointer: coarse) {
+      #cursor-glow {
+        display: none !important;
+      }
+    }
+
+    /* Top Reading Progress Bar */
+    #scroll-progress {
+      position: fixed;
+      top: 0;
+      left: 0;
+      height: 4px;
+      background: linear-gradient(90deg, #F43F5E, #E11D48, #BE123C);
+      z-index: 60;
+      width: 0%;
+      transition: width 0.1s linear;
+    }
+
+    /* Dynamic Card Styling */
+    .pink-card {
+      background: #FFF8FA;
+      border: 1.5px solid #FECDD6;
+      box-shadow: 0 4px 20px -2px rgba(225, 29, 72, 0.06);
+      transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.25);
+      position: relative;
+    }
+    
+    .expand-card {
+      transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.25);
+    }
+
+    /* Hover elevation effects enabled ONLY on devices with mouse/pointer (Desktop/Laptops) */
+    @media (hover: hover) {
+      .pink-card:hover {
+        border-color: #F43F5E;
+        transform: translateY(-6px) scale(1.02);
+        box-shadow: 0 20px 40px -8px rgba(225, 29, 72, 0.18), 0 0 16px 2px rgba(251, 113, 133, 0.2);
+        z-index: 10;
+      }
+      .expand-card:hover {
+        transform: translateY(-5px) scale(1.025);
+        box-shadow: 0 16px 32px -4px rgba(225, 29, 72, 0.16);
+        border-color: #F43F5E;
+      }
+    }
+
+    /* Touch-screen responsive active tap feedback */
+    .pink-card:active, .expand-card:active {
+      transform: scale(0.985);
+    }
+
+    .pink-gradient-pill {
+      background: linear-gradient(135deg, #FFE4E8 0%, #FFF5F7 100%);
+      border: 1.5px solid #FECDD6;
+    }
+
+    /* Shimmer effect for Featured Beginner Badge */
+    @keyframes badgeShimmer {
+      0% { background-position: -200% 0; }
+      100% { background-position: 200% 0; }
+    }
+    .badge-shimmer {
+      background: linear-gradient(90deg, #E11D48 0%, #FB7185 50%, #E11D48 100%);
+      background-size: 200% 100%;
+      animation: badgeShimmer 3.5s infinite linear;
+    }
+
+    .pink-subtle-pattern {
+      background-image: radial-gradient(rgba(225, 29, 72, 0.06) 1.2px, transparent 1.2px);
+      background-size: 20px 20px;
+    }
+
+    /* Shake animation for invalid captcha entry */
+    @keyframes shake {
+      0%, 100% { transform: translateX(0); }
+      20%, 60% { transform: translateX(-6px); }
+      40%, 80% { transform: translateX(6px); }
+    }
+    .animate-shake {
+      animation: shake 0.35s ease-in-out;
+    }
+  </style>
+</head>
+<body class="bg-pinkPage text-roseBrand-textDark antialiased pink-subtle-pattern relative">
+
+  <!-- Security Verification (CAPTCHA) Overlay Gate -->
+  <div id="captcha-overlay" class="fixed inset-0 z-[100] flex items-center justify-center bg-roseBrand-dark/80 backdrop-blur-md p-4 transition-all duration-500">
+    <div class="w-full max-w-md bg-white rounded-3xl p-6 sm:p-8 shadow-2xl border-2 border-roseBrand-200 text-center relative overflow-hidden transform transition-all duration-300">
+      
+      <!-- Top Decorative Accent Bar -->
+      <div class="absolute top-0 left-0 right-0 h-2 bg-gradient-to-r from-roseBrand-500 via-roseBrand-600 to-roseBrand-800"></div>
+
+      <!-- Security Brand Icon (Red "D" + Dumbbell Emblem) -->
+      <div class="relative w-16 h-14 mx-auto mt-2 mb-4 rounded-2xl bg-neutral-950 flex items-center justify-center text-white shadow-lg shadow-roseBrand-600/30 border border-neutral-800">
+        <svg class="w-12 h-6" viewBox="0 0 106 50" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <rect x="7" y="17" width="6" height="16" fill="#FFFFFF"/>
+          <rect x="17" y="12" width="6" height="26" fill="#FFFFFF"/>
+          <rect x="23" y="21.5" width="14" height="7" fill="#FFFFFF"/>
+          <rect x="46" y="21.5" width="13" height="7" fill="#FFFFFF"/>
+          <rect x="68" y="21.5" width="16" height="7" fill="#FFFFFF"/>
+          <rect x="84" y="12" width="6" height="26" fill="#FFFFFF"/>
+          <rect x="94" y="17" width="6" height="16" fill="#FFFFFF"/>
+          <path fill-rule="evenodd" clip-rule="evenodd" d="M36 10H53C62.9411 10 71 16.7157 71 25C71 33.2843 62.9411 40 53 40H36V10ZM46 17.5V32.5H52.5C56.6421 32.5 60 29.1421 60 25C60 20.8579 56.6421 17.5 52.5 17.5H46Z" fill="#FF1E27"/>
+        </svg>
+        <span class="absolute -top-1 -right-1 w-3 h-3 bg-emerald-400 rounded-full border-2 border-white animate-pulse"></span>
+      </div>
+
+      <!-- Title & Context -->
+      <div class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-roseBrand-50 border border-pinkPage-border text-xs font-bold text-roseBrand-700 uppercase tracking-wider mb-2">
+        <span>Security Check</span>
+        <span>&bull;</span>
+        <span>Anti-Bot Shield</span>
+      </div>
+
+      <h2 class="font-display font-black text-2xl sm:text-3xl text-roseBrand-dark tracking-tight">
+        Strong with Deb
+      </h2>
+      <p class="mt-2 text-xs sm:text-sm text-roseBrand-textMuted leading-relaxed">
+        Please complete the quick verification below to access Deb's coaching portfolio and programs.
+      </p>
+
+      <!-- Challenge 1: One-Click Cloudflare/reCAPTCHA Style Human Checkbox -->
+      <div id="captcha-widget-box" class="mt-6 p-4 rounded-2xl bg-[#FFF8FA] border-2 border-roseBrand-200 hover:border-roseBrand-400 transition-all flex items-center justify-between shadow-sm">
+        
+        <div class="flex items-center gap-3.5 text-left">
+          <!-- The Interactive Checkbox / Spinner -->
+          <button type="button" id="captcha-checkbox-btn" onclick="handleCaptchaCheck()" class="w-8 h-8 rounded-lg border-2 border-slate-300 hover:border-roseBrand-600 bg-white flex items-center justify-center transition-all shadow-sm focus:outline-none focus:ring-2 focus:ring-roseBrand-400" aria-label="Verify you are human">
+            <span id="captcha-check-icon" class="hidden">
+              <i data-lucide="check" class="w-5 h-5 text-emerald-600 stroke-[3]"></i>
+            </span>
+            <span id="captcha-spinner" class="hidden">
+              <svg class="animate-spin w-5 h-5 text-roseBrand-600" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
+                <circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle>
+                <path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
+              </svg>
+            </span>
+          </button>
+          <div>
+            <div id="captcha-status-text" class="font-bold text-sm text-roseBrand-dark">I am not a robot</div>
+            <div class="text-[11px] text-roseBrand-textMuted">Click the box to verify</div>
+          </div>
+        </div>
+
+        <!-- Security Branding Mini Badge -->
+        <div class="flex flex-col items-center justify-center pl-3 border-l border-roseBrand-200 text-roseBrand-500">
+          <i data-lucide="shield" class="w-5 h-5"></i>
+          <span class="text-[9px] font-black tracking-wider uppercase mt-0.5 text-roseBrand-600">Protected</span>
+        </div>
+
+      </div>
+
+      <!-- Challenge 2: Alphanumeric Code Challenge (Expandable) -->
+      <div class="mt-4 pt-3 border-t border-pinkPage-border text-left">
+        <button type="button" onclick="toggleCodeCaptcha()" class="text-xs font-bold text-roseBrand-600 hover:text-roseBrand-800 flex items-center gap-1 transition-colors">
+          <span id="code-toggle-text">Or enter security code challenge &darr;</span>
+        </button>
+
+        <!-- Hidden Code Puzzle Box -->
+        <div id="code-captcha-container" class="hidden mt-3 p-3.5 rounded-xl bg-pinkPage-surface border border-pinkPage-border">
+          <div class="flex items-center justify-between gap-2 mb-2">
+            <div class="text-xs font-bold text-roseBrand-dark">Type the 4 characters:</div>
+            <button type="button" onclick="generateNewCaptchaCode()" class="text-xs text-roseBrand-600 hover:text-roseBrand-800 flex items-center gap-1 font-semibold">
+              <i data-lucide="rotate-cw" class="w-3.5 h-3.5"></i>
+              <span>New code</span>
+            </button>
+          </div>
+          
+          <div class="flex items-center gap-3">
+            <canvas id="captcha-canvas" width="130" height="42" class="rounded-lg border border-pinkPage-border bg-white shadow-inner"></canvas>
+            <input type="text" id="captcha-input" maxlength="4" placeholder="Code" class="flex-1 px-3 py-2 rounded-lg bg-white border border-pinkPage-border text-base font-bold text-center tracking-widest text-roseBrand-dark focus:outline-none focus:border-roseBrand-600 uppercase">
+          </div>
+          <button type="button" onclick="verifyTextCaptcha()" class="mt-2.5 w-full py-2 rounded-lg bg-roseBrand-600 hover:bg-roseBrand-700 text-white font-bold text-xs uppercase tracking-wider transition-all shadow-sm">
+            Verify Code
+          </button>
+          <div id="captcha-error-msg" class="hidden text-xs text-rose-600 font-bold mt-1.5 text-center">Incorrect code. Try again!</div>
+        </div>
+      </div>
+
+      <!-- Footer Info -->
+      <div class="mt-5 text-[11px] text-roseBrand-textMuted flex items-center justify-center gap-2">
+        <i data-lucide="lock" class="w-3.5 h-3.5 text-emerald-600"></i>
+        <span>Encrypted Browser Protection</span>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- Scroll Progress Bar -->
+  <div id="scroll-progress"></div>
+
+  <!-- Interactive Glowing Cursor Area -->
+  <div id="cursor-glow"></div>
+
+  <!-- Sticky Navbar (Fully Responsive on Mobile, Tablet & Desktop) -->
+  <header class="fixed top-0 left-0 w-full z-50 px-3 sm:px-8 py-2.5 sm:py-3.5 transition-all" id="header-nav">
+    <div class="max-w-6xl mx-auto bg-pinkPage-surface/95 backdrop-blur-md px-3.5 sm:px-6 py-2.5 sm:py-3 rounded-2xl border border-pinkPage-border shadow-sm">
+      <div class="flex items-center justify-between">
+        
+        <!-- Brand Logo (Red "D" + Dumbbell Emblem) -->
+        <a href="#" class="flex items-center gap-2.5 sm:gap-3.5 group">
+          <div class="relative w-11 h-11 sm:w-12 sm:h-12 rounded-xl sm:rounded-2xl bg-neutral-950 flex items-center justify-center shadow-md shadow-roseBrand-600/20 group-hover:scale-105 transition-all duration-300 border border-neutral-800 shrink-0">
+            <!-- Red "D" with Dumbbell through the center -->
+            <svg class="w-8 h-4.5 sm:w-9 sm:h-5" viewBox="0 0 106 50" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <rect x="7" y="17" width="6" height="16" rx="0.5" fill="#FFFFFF"/>
+              <rect x="17" y="12" width="6" height="26" rx="0.5" fill="#FFFFFF"/>
+              <rect x="23" y="21.5" width="14" height="7" fill="#FFFFFF"/>
+              <rect x="46" y="21.5" width="13" height="7" fill="#FFFFFF"/>
+              <rect x="68" y="21.5" width="16" height="7" fill="#FFFFFF"/>
+              <rect x="84" y="12" width="6" height="26" rx="0.5" fill="#FFFFFF"/>
+              <rect x="94" y="17" width="6" height="16" rx="0.5" fill="#FFFFFF"/>
+              <path fill-rule="evenodd" clip-rule="evenodd" d="M36 10H53C62.9411 10 71 16.7157 71 25C71 33.2843 62.9411 40 53 40H36V10ZM46 17.5V32.5H52.5C56.6421 32.5 60 29.1421 60 25C60 20.8579 56.6421 17.5 52.5 17.5H46Z" fill="#FF1E27"/>
+            </svg>
+            <span class="absolute -top-1 -right-1 w-2.5 h-2.5 bg-roseBrand-500 rounded-full border-2 border-pinkPage-surface animate-pulse"></span>
+          </div>
+          <div>
+            <span class="font-display font-black text-sm sm:text-base md:text-lg tracking-tight text-roseBrand-dark group-hover:text-roseBrand-600 transition-colors">STRONG WITH DEB</span>
+            <span class="hidden sm:block text-[11px] sm:text-xs font-bold text-roseBrand-600 tracking-wider">Functional Strength &amp; Running</span>
+          </div>
+        </a>
+
+        <!-- Desktop Nav Links -->
+        <nav class="hidden md:flex items-center gap-6 lg:gap-7 text-xs lg:text-sm font-extrabold text-roseBrand-textMuted uppercase tracking-wider">
+          <a href="#about" class="hover:text-roseBrand-600 transition-colors">Story</a>
+          <a href="#why-deb" class="hover:text-roseBrand-600 transition-colors">Why 1-on-1</a>
+          <a href="#courses" class="hover:text-roseBrand-600 transition-colors">The 3 Programs</a>
+          <a href="#faq" class="hover:text-roseBrand-600 transition-colors">FAQs</a>
+          <a href="#contact" class="hover:text-roseBrand-600 transition-colors">Contact</a>
+        </nav>
+
+        <!-- Header Actions: WhatsApp + Mobile Menu Toggle -->
+        <div class="flex items-center gap-2">
+          <a href="https://wa.me/919880965627?text=Hi%20Deb!%20I'm%20interested%20in%20your%20training%20programs." target="_blank" class="flex items-center gap-1.5 sm:gap-2 px-3 sm:px-4 py-2 rounded-xl bg-emerald-100 text-emerald-800 border border-emerald-300 text-xs sm:text-sm font-extrabold hover:bg-emerald-200 transition-all shadow-sm shrink-0">
+            <i data-lucide="message-circle" class="w-4 h-4 text-emerald-700"></i>
+            <span class="hidden sm:inline">WhatsApp Deb</span>
+            <span class="sm:hidden">WhatsApp</span>
+          </a>
+
+          <!-- Mobile Hamburger Toggle (Taps to open navigation) -->
+          <button onclick="toggleMobileMenu()" id="mobile-menu-btn" aria-label="Toggle navigation menu" class="md:hidden w-9 h-9 rounded-xl bg-pinkPage hover:bg-roseBrand-100 border border-pinkPage-border text-roseBrand-dark flex items-center justify-center transition-colors">
+            <i data-lucide="menu" id="mobile-menu-icon" class="w-5 h-5 text-roseBrand-dark"></i>
+          </button>
+        </div>
+
+      </div>
+
+      <!-- Mobile Dropdown Navigation Menu -->
+      <div id="mobile-menu" class="hidden md:hidden mt-3 pt-3 border-t border-pinkPage-border space-y-1">
+        <a href="#about" onclick="toggleMobileMenu()" class="flex items-center justify-between px-3 py-2.5 rounded-xl text-sm font-bold text-roseBrand-dark hover:bg-roseBrand-100 transition-colors">
+          <span>📖 Meet Deb &amp; Achievements</span>
+          <i data-lucide="chevron-right" class="w-4 h-4 text-roseBrand-400"></i>
+        </a>
+        <a href="#why-deb" onclick="toggleMobileMenu()" class="flex items-center justify-between px-3 py-2.5 rounded-xl text-sm font-bold text-roseBrand-dark hover:bg-roseBrand-100 transition-colors">
+          <span>💡 Why 1-on-1 Online</span>
+          <i data-lucide="chevron-right" class="w-4 h-4 text-roseBrand-400"></i>
+        </a>
+        <a href="#courses" onclick="toggleMobileMenu()" class="flex items-center justify-between px-3 py-2.5 rounded-xl text-sm font-bold text-roseBrand-dark hover:bg-roseBrand-100 transition-colors">
+          <span>🏆 The 3 Signature Programs</span>
+          <i data-lucide="chevron-right" class="w-4 h-4 text-roseBrand-400"></i>
+        </a>
+        <a href="#faq" onclick="toggleMobileMenu()" class="flex items-center justify-between px-3 py-2.5 rounded-xl text-sm font-bold text-roseBrand-dark hover:bg-roseBrand-100 transition-colors">
+          <span>❓ Frequently Asked Questions</span>
+          <i data-lucide="chevron-right" class="w-4 h-4 text-roseBrand-400"></i>
+        </a>
+        <a href="#contact" onclick="toggleMobileMenu()" class="flex items-center justify-between px-3 py-2.5 rounded-xl text-sm font-bold text-roseBrand-dark hover:bg-roseBrand-100 transition-colors">
+          <span>💬 Contact Deb Directly</span>
+          <i data-lucide="chevron-right" class="w-4 h-4 text-roseBrand-400"></i>
+        </a>
+        <div class="pt-2 pb-1 flex gap-2">
+          <a href="https://wa.me/919880965627" target="_blank" class="flex-1 py-2 text-center text-xs font-black uppercase rounded-lg bg-emerald-600 text-white shadow-sm flex items-center justify-center gap-1.5">
+            <i data-lucide="message-circle" class="w-3.5 h-3.5"></i>
+            <span>WhatsApp</span>
+          </a>
+          <a href="https://mail.google.com/mail/?view=cm&fs=1&to=ghosh.debashreea@gmail.com" target="_blank" class="flex-1 py-2 text-center text-xs font-black uppercase rounded-lg bg-roseBrand-600 text-white shadow-sm flex items-center justify-center gap-1.5">
+            <i data-lucide="mail" class="w-3.5 h-3.5"></i>
+            <span>Gmail</span>
+          </a>
+        </div>
+      </div>
+
+    </div>
+  </header>
+
+  <!-- Hero Section (Enlarged, High-Impact Typography) -->
+  <section class="pt-36 pb-16 px-4 sm:px-8 relative overflow-hidden bg-gradient-to-b from-[#FFE8EE] via-pinkPage to-[#FFF5F8]">
+    <div class="max-w-4xl mx-auto text-center relative z-10">
+      
+      <!-- Top Pill -->
+      <div class="inline-flex items-center gap-2 px-5 py-2 rounded-full pink-gradient-pill text-sm font-bold text-roseBrand-800 mb-6 shadow-sm">
+        <span class="w-2.5 h-2.5 rounded-full bg-roseBrand-600 animate-pulse"></span>
+        <span>Online 1-on-1 Coaching &bull; Fit &amp; Capable for Everyday Life</span>
+      </div>
+
+      <!-- Main Punchy Title -->
+      <h1 class="font-display font-black text-4xl sm:text-6xl md:text-7xl text-roseBrand-dark tracking-tight leading-[1.1]">
+        Getting stronger makes <br class="hidden sm:inline">
+        <span class="text-transparent bg-clip-text bg-gradient-to-r from-roseBrand-600 via-roseBrand-700 to-roseBrand-800">life a whole lot easier.</span>
+      </h1>
+
+      <!-- Enlarged subhead -->
+      <p class="mt-6 text-roseBrand-textMuted text-lg sm:text-xl md:text-2xl max-w-2xl mx-auto font-medium leading-relaxed">
+        Strength and running aren’t about scale numbers. It’s about being capable of carrying groceries, climbing stairs, traveling with ease, and keeping up with life!
+      </p>
+
+      <!-- 3 Feature Chips (Enlarged) -->
+      <div class="mt-8 flex flex-wrap items-center justify-center gap-3 text-sm sm:text-base font-bold text-roseBrand-800">
+        <span class="px-4 py-2 rounded-full bg-[#FFE4E8] border border-pinkPage-border flex items-center gap-2 shadow-sm">
+          <i data-lucide="video" class="w-4 h-4 text-roseBrand-600"></i> Live Form Corrections
+        </span>
+        <span class="px-4 py-2 rounded-full bg-[#FFE4E8] border border-pinkPage-border flex items-center gap-2 shadow-sm">
+          <i data-lucide="smile" class="w-4 h-4 text-roseBrand-600"></i> Beginner-Friendly &amp; Encouraging
+        </span>
+        <span class="px-4 py-2 rounded-full bg-[#FFE4E8] border border-pinkPage-border flex items-center gap-2 shadow-sm">
+          <i data-lucide="heart-pulse" class="w-4 h-4 text-roseBrand-600"></i> Step-by-Step Guidance
+        </span>
+      </div>
+
+      <!-- Action Buttons -->
+      <div class="mt-9 flex flex-wrap items-center justify-center gap-4">
+        <a href="#courses" class="px-8 py-4 rounded-xl bg-roseBrand-600 hover:bg-roseBrand-700 text-white font-display font-black text-base uppercase tracking-wider transition-all shadow-lg shadow-roseBrand-600/30 flex items-center gap-2 expand-card">
+          <span>View The 3 Programs</span>
+          <i data-lucide="arrow-down" class="w-5 h-5"></i>
+        </a>
+        <a href="https://wa.me/919880965627?text=Hi%20Deb!%20I'd%20love%20to%20learn%20more%20about%20your%20coaching." target="_blank" class="px-7 py-4 rounded-xl bg-pinkPage-card hover:bg-roseBrand-100 text-roseBrand-dark border border-pinkPage-border font-display font-bold text-base uppercase tracking-wider transition-all flex items-center gap-2 shadow-sm expand-card">
+          <i data-lucide="message-circle" class="w-5 h-5 text-emerald-600"></i>
+          <span>WhatsApp Deb</span>
+        </a>
+      </div>
+
+      <!-- Verified Milestones Bar (Vibrant Colors & Expansion Effects) -->
+      <div class="mt-14 pt-8 border-t border-pinkPage-border grid grid-cols-2 sm:grid-cols-4 gap-4 text-center">
+        <div class="p-5 rounded-2xl bg-gradient-to-br from-[#FFF5F8] via-[#FFE8F0] to-[#FFDDE8] border-2 border-roseBrand-300 shadow-sm expand-card cursor-default">
+          <div class="font-display font-black text-2xl sm:text-3xl text-roseBrand-700">11 &amp; 4</div>
+          <div class="text-xs sm:text-sm font-extrabold text-roseBrand-textMuted uppercase mt-1">11 Full Marathons &amp; 4 Ultramarathons</div>
+        </div>
+        <div class="p-5 rounded-2xl bg-gradient-to-br from-[#FFF7ED] via-[#FFEDD5] to-[#FFE2C2] border-2 border-amber-300 shadow-sm expand-card cursor-default">
+          <div class="font-display font-black text-2xl sm:text-3xl text-amber-800">2026</div>
+          <div class="text-xs sm:text-sm font-extrabold text-amber-900 uppercase mt-1">Boston &amp; Sydney</div>
+        </div>
+        <div class="p-5 rounded-2xl bg-gradient-to-br from-[#FAF5FF] via-[#F3E8FF] to-[#E9D5FF] border-2 border-purple-300 shadow-sm expand-card cursor-default">
+          <div class="font-display font-black text-2xl sm:text-3xl text-purple-800">11+ Yrs</div>
+          <div class="text-xs sm:text-sm font-extrabold text-purple-900 uppercase mt-1">Running &amp; CrossFit</div>
+        </div>
+        <div class="p-5 rounded-2xl bg-gradient-to-br from-[#F0FDF4] via-[#DCFCE7] to-[#C7F9D7] border-2 border-emerald-300 shadow-sm expand-card cursor-default">
+          <div class="font-display font-black text-2xl sm:text-3xl text-emerald-800">Mum of 2</div>
+          <div class="text-xs sm:text-sm font-extrabold text-emerald-900 uppercase mt-1">Teenage Boys</div>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- Section: Meet Deb in 4 Quick Snapshots (Enlarged text) -->
+  <section id="about" class="py-20 px-4 sm:px-8 bg-pinkPage-surface border-y border-pinkPage-border">
+    <div class="max-w-5xl mx-auto">
+      
+      <div class="flex flex-col sm:flex-row sm:items-end justify-between mb-12 gap-4">
+        <div>
+          <span class="text-sm font-bold font-mono uppercase tracking-widest text-roseBrand-700">// MEET YOUR COACH</span>
+          <h2 class="font-display font-black text-3xl sm:text-4xl md:text-5xl text-roseBrand-dark mt-1">
+            Hi, I’m Deb! 👋
+          </h2>
+        </div>
+        <p class="text-sm sm:text-base text-roseBrand-textMuted font-semibold max-w-sm">
+          A quick glance at my journey — from struggling after motherhood to marathons and coaching.
+        </p>
+      </div>
+
+      <!-- 4 Bite-Sized Story Tiles (Vibrant Colors & Expand Effects) -->
+      <div class="grid grid-cols-1 sm:grid-cols-2 gap-5">
+        
+        <!-- Tile 1 -->
+        <div class="pink-card p-6 sm:p-7 rounded-2xl bg-gradient-to-br from-[#FFF8FA] via-[#FFF3EC] to-[#FFE8DE] border-2 border-orange-200/90 expand-card flex items-start gap-5">
+          <div class="w-14 h-14 rounded-2xl bg-orange-100 text-orange-700 flex items-center justify-center font-bold text-2xl shrink-0 shadow-sm border border-orange-200">
+            🧘‍♀️
+          </div>
+          <div>
+            <h4 class="font-display font-black text-xl text-roseBrand-dark">How It All Started</h4>
+            <p class="text-sm sm:text-base text-roseBrand-textMuted mt-2 leading-relaxed">
+              After having my two boys, I struggled to find my fitness. A casual yoga class with a runner friend opened the door to a whole new world: <strong class="text-roseBrand-dark">running</strong>.
+            </p>
+          </div>
+        </div>
+
+        <!-- Tile 2 -->
+        <div class="pink-card p-6 sm:p-7 rounded-2xl bg-gradient-to-br from-[#FFF8FA] via-[#FFE8F0] to-[#FFDEEA] border-2 border-roseBrand-300 expand-card flex items-start gap-5">
+          <div class="w-14 h-14 rounded-2xl bg-roseBrand-100 text-roseBrand-700 flex items-center justify-center font-bold text-2xl shrink-0 shadow-sm border border-roseBrand-200">
+            🏃‍♀️
+          </div>
+          <div>
+            <h4 class="font-display font-black text-xl text-roseBrand-dark">From 5K to 11 Marathons &amp; 4 Ultras</h4>
+            <p class="text-sm sm:text-base text-roseBrand-textMuted mt-2 leading-relaxed">
+              Started with a 5K and thought: <em>“Why stop there?”</em> 😂 Ran 10Ks, multiple halfs, <strong class="text-roseBrand-dark">11 full marathons and 4 ultramarathons</strong>.
+            </p>
+          </div>
+        </div>
+
+        <!-- Tile 3 -->
+        <div class="pink-card p-6 sm:p-7 rounded-2xl bg-gradient-to-br from-[#FFF8FA] via-[#F8EAFF] to-[#F1D8FF] border-2 border-fuchsia-300 expand-card flex items-start gap-5">
+          <div class="w-14 h-14 rounded-2xl bg-fuchsia-100 text-fuchsia-800 flex items-center justify-center font-bold text-2xl shrink-0 shadow-sm border border-fuchsia-200">
+            🏋️‍♀️
+          </div>
+          <div>
+            <h4 class="font-display font-black text-xl text-roseBrand-dark">Falling in Love with Strength</h4>
+            <p class="text-sm sm:text-base text-roseBrand-textMuted mt-2 leading-relaxed">
+              Discovered <strong class="text-roseBrand-dark">CrossFit</strong> to get stronger for running. Running was my first love, but CrossFit very quickly became a close second!
+            </p>
+          </div>
+        </div>
+
+        <!-- Tile 4 -->
+        <div class="pink-card p-6 sm:p-7 rounded-2xl bg-gradient-to-br from-[#FFF8FA] via-[#FEF7DE] to-[#FEEFBF] border-2 border-amber-300 expand-card flex items-start gap-5">
+          <div class="w-14 h-14 rounded-2xl bg-amber-100 text-amber-800 flex items-center justify-center font-bold text-2xl shrink-0 shadow-sm border border-amber-200">
+            🏅
+          </div>
+          <div>
+            <h4 class="font-display font-black text-xl text-roseBrand-dark">2026: Boston &amp; Sydney</h4>
+            <p class="text-sm sm:text-base text-roseBrand-textMuted mt-2 leading-relaxed">
+              Trained through perimenopause, qualified and ran <strong class="text-roseBrand-dark">Boston Marathon in April</strong>, and ran <strong class="text-roseBrand-dark">Sydney Marathon in August 2026</strong>!
+            </p>
+          </div>
+        </div>
+
+      </div>
+
+      <!-- Coach Deb's Golden Rule Banner (Large Text) -->
+      <div class="mt-8 p-6 rounded-2xl bg-[#FFE4E8] border border-pinkPage-borderStrong text-center shadow-sm">
+        <span class="text-base sm:text-xl font-black text-roseBrand-900 block">
+          “You don't need to be fit to start. You just need to start.”
+        </span>
+        <span class="block text-sm sm:text-base text-roseBrand-textMuted mt-1 font-semibold">
+          I’m not here to turn you into an athlete overnight — just to make you a stronger version of yourself for real life.
+        </span>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- Section: Why 1-on-1 Online with Deb (4 Pillars - Large text) -->
+  <section id="why-deb" class="py-20 px-4 sm:px-8 bg-pinkPage">
+    <div class="max-w-5xl mx-auto">
+      
+      <div class="text-center max-w-2xl mx-auto mb-12">
+        <span class="text-sm font-bold font-mono uppercase tracking-widest text-roseBrand-700">// WHY THIS WORKS</span>
+        <h2 class="font-display font-black text-3xl sm:text-4xl md:text-5xl text-roseBrand-dark mt-1">
+          Why Individual Attention Matters
+        </h2>
+        <p class="text-sm sm:text-base text-roseBrand-textMuted mt-2 font-medium">No generic workout apps. Real-time feedback tailored to your joints.</p>
+      </div>
+
+      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5">
+        
+        <div class="pink-card p-6 rounded-2xl text-center bg-gradient-to-br from-[#FFF8FA] via-[#F0F9FF] to-[#E0F2FE] border-2 border-sky-300 shadow-sm expand-card">
+          <div class="w-12 h-12 rounded-xl bg-sky-100 text-sky-800 flex items-center justify-center mx-auto mb-4 border border-sky-200 shadow-sm">
+            <i data-lucide="eye" class="w-6 h-6"></i>
+          </div>
+          <h4 class="font-display font-black text-base sm:text-lg text-roseBrand-dark">Live Eyes on Your Form</h4>
+          <p class="text-sm text-roseBrand-textMuted mt-2 leading-relaxed">
+            I watch your video angle in real-time to correct knees, hips, and back so you never train in pain.
+          </p>
+        </div>
+
+        <div class="pink-card p-6 rounded-2xl text-center bg-gradient-to-br from-[#FFF8FA] via-[#FFF7ED] to-[#FFEDD5] border-2 border-amber-300 shadow-sm expand-card">
+          <div class="w-12 h-12 rounded-xl bg-amber-100 text-amber-800 flex items-center justify-center mx-auto mb-4 border border-amber-200 shadow-sm">
+            <i data-lucide="calendar" class="w-6 h-6"></i>
+          </div>
+          <h4 class="font-display font-black text-base sm:text-lg text-roseBrand-dark">Busy-Life Flexibility</h4>
+          <p class="text-sm text-roseBrand-textMuted mt-2 leading-relaxed">
+            Mum-tested scheduling. If work, kids, or fatigue derail a day, we adjust your plan on WhatsApp.
+          </p>
+        </div>
+
+        <div class="pink-card p-6 rounded-2xl text-center bg-gradient-to-br from-[#FFF8FA] via-[#FFF1F3] to-[#FFE4E8] border-2 border-roseBrand-300 shadow-sm expand-card">
+          <div class="w-12 h-12 rounded-xl bg-roseBrand-100 text-roseBrand-700 flex items-center justify-center mx-auto mb-4 border border-roseBrand-200 shadow-sm">
+            <i data-lucide="shield-check" class="w-6 h-6"></i>
+          </div>
+          <h4 class="font-display font-black text-base sm:text-lg text-roseBrand-dark">Train Safely &amp; Move Well</h4>
+          <p class="text-sm text-roseBrand-textMuted mt-2 leading-relaxed">
+            Every session begins with dedicated warm-up and mobility work to prepare your body, protect your joints, and keep you moving comfortably.
+          </p>
+        </div>
+
+        <div class="pink-card p-6 rounded-2xl text-center bg-gradient-to-br from-[#FFF8FA] via-[#FAF5FF] to-[#F3E8FF] border-2 border-purple-300 shadow-sm expand-card">
+          <div class="w-12 h-12 rounded-xl bg-purple-100 text-purple-800 flex items-center justify-center mx-auto mb-4 border border-purple-200 shadow-sm">
+            <i data-lucide="smile" class="w-6 h-6"></i>
+          </div>
+          <h4 class="font-display font-black text-base sm:text-lg text-roseBrand-dark">Zero Judgment</h4>
+          <p class="text-sm text-roseBrand-textMuted mt-2 leading-relaxed">
+            Laugh at ourselves, celebrate small wins, and build consistency without toxic fitness pressure.
+          </p>
+        </div>
+
+      </div>
+
+    </div>
+  </section>
+
+  <!-- Section: The 3 Programs (Enlarged Cards, High Contrast) -->
+  <section id="courses" class="py-20 px-4 sm:px-8 bg-pinkPage-surface border-t border-pinkPage-border">
+    <div class="max-w-6xl mx-auto">
+      
+      <div class="text-center max-w-2xl mx-auto mb-14">
+        <span class="text-sm font-bold font-mono uppercase tracking-widest text-roseBrand-700">// THE 3 PROGRAMS</span>
+        <h2 class="font-display font-black text-3xl sm:text-4xl md:text-5xl text-roseBrand-dark mt-1">
+          Pick Your Path
+        </h2>
+        <p class="text-base sm:text-lg text-roseBrand-textMuted mt-2 font-medium">Clear structure. Transparent investment. Direct 1-on-1 coaching.</p>
+      </div>
+
+      <!-- 3 Programs Grid -->
+      <div class="grid grid-cols-1 lg:grid-cols-3 gap-8 items-stretch">
+        
+        <!-- PROGRAM 1 (Featured Beginner Favorite) -->
+        <div id="course-1" class="pink-card rounded-3xl p-7 sm:p-8 flex flex-col justify-between border-2 border-roseBrand-500 relative shadow-xl bg-gradient-to-b from-[#FFF5F8] via-[#FFF8FA] to-pinkPage-card expand-card">
+          <!-- Featured Badge -->
+          <div class="absolute -top-3.5 left-1/2 -translate-x-1/2 px-4 py-1 rounded-full badge-shimmer text-white text-xs font-black uppercase tracking-widest shadow-lg flex items-center gap-1.5">
+            <i data-lucide="star" class="w-3.5 h-3.5 fill-white"></i>
+            <span>BEGINNER FAVORITE</span>
+          </div>
+
+          <div>
+            <div class="flex items-center justify-between gap-2 mb-3 mt-1">
+              <span class="px-3 py-1 rounded-md bg-roseBrand-100 text-roseBrand-800 font-black text-xs sm:text-sm">
+                PROGRAM 01
+              </span>
+              <span class="text-sm font-bold text-roseBrand-600">6 Weeks &bull; 12 Sessions</span>
+            </div>
+
+            <h3 class="font-display font-black text-2xl sm:text-3xl text-roseBrand-dark leading-tight">
+              Functional Strength Training
+            </h3>
+            <div class="text-sm font-bold text-roseBrand-600 uppercase tracking-wider mt-1">Online &bull; One-on-One Live Coaching</div>
+
+            <!-- Price -->
+            <div class="my-5 pb-4 border-b border-pinkPage-border">
+              <span class="text-4xl sm:text-5xl font-display font-black text-roseBrand-dark">$250</span>
+              <span class="text-sm text-roseBrand-textMuted font-bold">/ complete 6-week program</span>
+            </div>
+
+            <!-- Summary -->
+            <p class="text-sm sm:text-base text-roseBrand-textMuted leading-relaxed">
+              Build the confidence and strength to climb stairs, carry groceries, travel, and handle life without relying on anyone.
+            </p>
+
+            <!-- 55 Min Breakdown Chips -->
+            <div class="my-5 p-4 rounded-2xl bg-[#FFE8EE] border border-pinkPage-border space-y-2 text-sm">
+              <div class="font-black text-roseBrand-800 text-xs uppercase tracking-wider">Session Format (~55 mins each &bull; 12 Sessions Total):</div>
+              <div class="flex items-center gap-2 text-roseBrand-textDark font-medium">
+                <span class="w-2 h-2 rounded-full bg-roseBrand-600"></span>
+                <span><strong>20 mins:</strong> Warm-up + Mobility (moving well)</span>
+              </div>
+              <div class="flex items-center gap-2 text-roseBrand-textDark font-medium">
+                <span class="w-2 h-2 rounded-full bg-roseBrand-600"></span>
+                <span><strong>20 mins:</strong> Focused Strength Workout (tailored)</span>
+              </div>
+              <div class="flex items-center gap-2 text-roseBrand-textDark font-medium">
+                <span class="w-2 h-2 rounded-full bg-roseBrand-600"></span>
+                <span><strong>15 mins:</strong> Cool-down &amp; Recovery</span>
+              </div>
+            </div>
+
+            <!-- Checklist -->
+            <ul class="space-y-2 text-sm sm:text-base text-roseBrand-textMuted">
+              <li class="flex items-center gap-2.5">
+                <i data-lucide="check" class="w-5 h-5 text-roseBrand-600 shrink-0"></i>
+                <span><strong>2 sessions per week</strong> (12 live sessions in all)</span>
+              </li>
+              <li class="flex items-center gap-2.5">
+                <i data-lucide="check" class="w-5 h-5 text-roseBrand-600 shrink-0"></i>
+                <span>Live real-time form correction &amp; feedback</span>
+              </li>
+              <li class="flex items-center gap-2.5">
+                <i data-lucide="check" class="w-5 h-5 text-roseBrand-600 shrink-0"></i>
+                <span>100% tailored to your starting level — no experience needed</span>
+              </li>
+            </ul>
+          </div>
+
+          <!-- Buttons -->
+          <div class="mt-8 pt-5 border-t border-pinkPage-border flex flex-col gap-3">
+            <a href="https://wa.me/919880965627?text=Hi%20Deb!%20I'm%20interested%20in%20the%20Online%20Functional%20Strength%20Training%20(One-on-One)%20program." target="_blank" class="w-full py-3.5 rounded-xl bg-roseBrand-600 hover:bg-roseBrand-700 text-white font-display font-black text-sm uppercase tracking-wider text-center transition-all shadow-md flex items-center justify-center gap-2">
+              <i data-lucide="message-circle" class="w-4 h-4"></i>
+              <span>WhatsApp Deb (+91 9880965627)</span>
+            </a>
+            <a href="https://mail.google.com/mail/?view=cm&fs=1&to=ghosh.debashreea@gmail.com&su=Inquiry:%20Functional%20Strength%20One-on-One&body=Hi%20Deb,%20I'm%20interested%20in%20the%20Online%20Functional%20Strength%20Training%20(One-on-One)%20program!" target="_blank" rel="noopener noreferrer" class="w-full py-2 text-center text-sm text-roseBrand-textMuted hover:text-roseBrand-dark font-bold transition-colors">
+              Enquire via Gmail &rarr;
+            </a>
+          </div>
+        </div>
+
+        <!-- PROGRAM 2: Couch to 5K -->
+        <div id="course-2" class="pink-card rounded-3xl p-7 sm:p-8 flex flex-col justify-between border-2 border-orange-300 relative shadow-md bg-gradient-to-b from-[#FFF8FA] via-[#FFF6F0] to-[#FFF0E2] expand-card">
+          <div>
+            <div class="flex items-center justify-between gap-2 mb-3 mt-1">
+              <span class="px-3 py-1 rounded-md bg-orange-100 text-orange-800 font-black text-xs sm:text-sm border border-orange-200">
+                PROGRAM 02
+              </span>
+              <span class="text-sm font-bold text-orange-700">12 Weeks</span>
+            </div>
+
+            <h3 class="font-display font-black text-2xl sm:text-3xl text-roseBrand-dark leading-tight">
+              Couch to 5K
+            </h3>
+            <div class="text-sm font-bold text-orange-700 uppercase tracking-wider mt-1">Step-by-Step Running Guide</div>
+
+            <!-- Price -->
+            <div class="my-5 pb-4 border-b border-pinkPage-border">
+              <span class="text-4xl sm:text-5xl font-display font-black text-roseBrand-dark">$300</span>
+              <span class="text-sm text-roseBrand-textMuted font-bold">/ complete 12 weeks</span>
+            </div>
+
+            <!-- Summary -->
+            <p class="text-sm sm:text-base text-roseBrand-textMuted leading-relaxed">
+              Want to start running but don't know where to begin? Step-by-step guidance from zero running experience to comfortably crossing your first 5K finish line without injury.
+            </p>
+
+            <!-- What's included chips -->
+            <div class="my-5 p-4 rounded-2xl bg-[#FFF0E8] border border-orange-200 space-y-2 text-sm text-roseBrand-textDark">
+              <div class="font-black text-orange-900 text-xs uppercase tracking-wider">What You Receive:</div>
+              <div class="flex items-center gap-2 font-medium">
+                <i data-lucide="check-circle-2" class="w-4 h-4 text-orange-600 shrink-0"></i>
+                <span><strong>Personalised 12-week running plan</strong> for your pace</span>
+              </div>
+              <div class="flex items-center gap-2 font-medium">
+                <i data-lucide="check-circle-2" class="w-4 h-4 text-orange-600 shrink-0"></i>
+                <span><strong>1 live strength session per week</strong> to support running</span>
+              </div>
+              <div class="flex items-center gap-2 font-medium">
+                <i data-lucide="check-circle-2" class="w-4 h-4 text-orange-600 shrink-0"></i>
+                <span><strong>1 Kick-off call + weekly check-ins</strong> over chat/call</span>
+              </div>
+            </div>
+
+            <!-- Checklist -->
+            <ul class="space-y-2 text-sm sm:text-base text-roseBrand-textMuted">
+              <li class="flex items-center gap-2.5">
+                <i data-lucide="check" class="w-5 h-5 text-orange-600 shrink-0"></i>
+                <span>Running form correction &amp; feedback</span>
+              </li>
+              <li class="flex items-center gap-2.5">
+                <i data-lucide="check" class="w-5 h-5 text-orange-600 shrink-0"></i>
+                <span>Mobility drills &amp; injury-aware pacing</span>
+              </li>
+              <li class="flex items-center gap-2.5">
+                <i data-lucide="check" class="w-5 h-5 text-orange-600 shrink-0"></i>
+                <span>Weekly updates and training adjustments whenever needed</span>
+              </li>
+            </ul>
+          </div>
+
+          <!-- Buttons -->
+          <div class="mt-8 pt-5 border-t border-pinkPage-border flex flex-col gap-3">
+            <a href="https://wa.me/919880965627?text=Hi%20Deb!%20I'd%20love%20to%20join%20your%20Couch%20to%205K%20program." target="_blank" class="w-full py-3.5 rounded-xl bg-orange-600 hover:bg-orange-700 text-white font-display font-black text-sm uppercase tracking-wider text-center transition-all shadow-md flex items-center justify-center gap-2">
+              <i data-lucide="message-circle" class="w-4 h-4"></i>
+              <span>WhatsApp Deb (+91 9880965627)</span>
+            </a>
+            <a href="https://mail.google.com/mail/?view=cm&fs=1&to=ghosh.debashreea@gmail.com&su=Inquiry:%20Couch%20to%205K%20Program&body=Hi%20Deb,%20I'm%20interested%20in%20the%20Couch%20to%205K%20program!" target="_blank" rel="noopener noreferrer" class="w-full py-2 text-center text-sm text-roseBrand-textMuted hover:text-roseBrand-dark font-bold transition-colors">
+              Enquire via Gmail &rarr;
+            </a>
+          </div>
+        </div>
+
+        <!-- PROGRAM 3: Couch to 10K -->
+        <div id="course-3" class="pink-card rounded-3xl p-7 sm:p-8 flex flex-col justify-between border-2 border-fuchsia-300 relative shadow-md bg-gradient-to-b from-[#FFF8FA] via-[#FAF0FF] to-[#F5E2FF] expand-card">
+          <div>
+            <div class="flex items-center justify-between gap-2 mb-3">
+              <span class="px-3 py-1 rounded-md bg-fuchsia-100 text-fuchsia-800 font-black text-xs sm:text-sm border border-fuchsia-200">
+                PROGRAM 03
+              </span>
+              <span class="text-sm font-bold text-fuchsia-700">12 Weeks</span>
+            </div>
+
+            <h3 class="font-display font-black text-2xl sm:text-3xl text-roseBrand-dark leading-tight">
+              Couch to 10K
+            </h3>
+            <div class="text-sm font-bold text-fuchsia-700 uppercase tracking-wider mt-1">Endurance &amp; Stamina</div>
+
+            <!-- Price -->
+            <div class="my-5 pb-4 border-b border-pinkPage-border">
+              <span class="text-4xl sm:text-5xl font-display font-black text-roseBrand-dark">$350</span>
+              <span class="text-sm text-roseBrand-textMuted font-bold">/ complete 12 weeks</span>
+            </div>
+
+            <!-- Summary -->
+            <p class="text-sm sm:text-base text-roseBrand-textMuted leading-relaxed">
+              <em>“Running 10K isn’t just doubling your 5K and hoping for the best! 😄”</em> Gradually build volume and stamina.
+            </p>
+
+            <!-- What's included chips -->
+            <div class="my-5 p-4 rounded-2xl bg-[#F8EDFF] border border-fuchsia-200 space-y-2 text-sm text-roseBrand-textDark">
+              <div class="font-black text-fuchsia-900 text-xs uppercase tracking-wider">What You Receive:</div>
+              <div class="flex items-center gap-2 font-medium">
+                <i data-lucide="check-circle-2" class="w-4 h-4 text-fuchsia-600 shrink-0"></i>
+                <span><strong>Structured 12-week progressive running plan</strong></span>
+              </div>
+              <div class="flex items-center gap-2 font-medium">
+                <i data-lucide="check-circle-2" class="w-4 h-4 text-fuchsia-600 shrink-0"></i>
+                <span><strong>Complementary leg &amp; core strength plan</strong></span>
+              </div>
+              <div class="flex items-center gap-2 font-medium">
+                <i data-lucide="check-circle-2" class="w-4 h-4 text-fuchsia-600 shrink-0"></i>
+                <span><strong>1 Kick-off call + 1 weekly online session</strong></span>
+              </div>
+            </div>
+
+            <!-- Checklist -->
+            <ul class="space-y-2 text-sm sm:text-base text-roseBrand-textMuted">
+              <li class="flex items-center gap-2.5">
+                <i data-lucide="check" class="w-5 h-5 text-fuchsia-600 shrink-0"></i>
+                <span>Running form correction &amp; feedback</span>
+              </li>
+              <li class="flex items-center gap-2.5">
+                <i data-lucide="check" class="w-5 h-5 text-fuchsia-600 shrink-0"></i>
+                <span>Mobility drills &amp; training adjustments</span>
+              </li>
+              <li class="flex items-center gap-2.5">
+                <i data-lucide="check" class="w-5 h-5 text-fuchsia-600 shrink-0"></i>
+                <span>Ongoing weekly updates over chat/call</span>
+              </li>
+            </ul>
+          </div>
+
+          <!-- Buttons -->
+          <div class="mt-8 pt-5 border-t border-pinkPage-border flex flex-col gap-3">
+            <a href="https://wa.me/919880965627?text=Hi%20Deb!%20I'm%20ready%20to%20take%20on%20the%20Couch%20to%2010K%20program." target="_blank" class="w-full py-3.5 rounded-xl bg-fuchsia-700 hover:bg-fuchsia-800 text-white font-display font-black text-sm uppercase tracking-wider text-center transition-all shadow-md flex items-center justify-center gap-2">
+              <i data-lucide="message-circle" class="w-4 h-4"></i>
+              <span>WhatsApp Deb (+91 9880965627)</span>
+            </a>
+            <a href="https://mail.google.com/mail/?view=cm&fs=1&to=ghosh.debashreea@gmail.com&su=Inquiry:%20Couch%20to%2010K%20Program&body=Hi%20Deb,%20I'm%20interested%20in%20the%20Couch%20to%2010K%20program!" target="_blank" rel="noopener noreferrer" class="w-full py-2 text-center text-sm text-roseBrand-textMuted hover:text-roseBrand-dark font-bold transition-colors">
+              Enquire via Gmail &rarr;
+            </a>
+          </div>
+        </div>
+
+      </div>
+
+    </div>
+  </section>
+
+  <!-- Section: FAQs (Accordion - Large text) -->
+  <section id="faq" class="py-20 px-4 sm:px-8 bg-pinkPage-surface border-t border-pinkPage-border">
+    <div class="max-w-3xl mx-auto">
+      
+      <div class="text-center mb-10">
+        <span class="text-sm font-bold font-mono uppercase tracking-widest text-roseBrand-700">// COMMON QUESTIONS</span>
+        <h2 class="font-display font-black text-3xl sm:text-4xl text-roseBrand-dark mt-1">
+          Quick Answers
+        </h2>
+      </div>
+
+      <div class="space-y-4">
+        
+        <div class="pink-card rounded-2xl p-5 sm:p-6 border-2 border-pinkPage-border hover:border-roseBrand-400 expand-card">
+          <button onclick="toggleFaq('faq-1')" class="w-full flex items-center justify-between text-left font-display font-bold text-base sm:text-lg text-roseBrand-dark">
+            <span>Do I need to be fit or own heavy gym equipments to start?</span>
+            <i data-lucide="chevron-down" id="faq-1-icon" class="w-5 h-5 text-roseBrand-600 transition-transform"></i>
+          </button>
+          <div id="faq-1" class="hidden mt-3 text-sm sm:text-base text-roseBrand-textMuted leading-relaxed pt-3 border-t border-pinkPage-border">
+            No! You don’t need to be fit to start. We use bodyweight, or light dumbells and resistance bands and yoga mats you might already have!
+          </div>
+        </div>
+
+        <div class="pink-card rounded-2xl p-5 sm:p-6 border-2 border-pinkPage-border hover:border-roseBrand-400 expand-card">
+          <button onclick="toggleFaq('faq-2')" class="w-full flex items-center justify-between text-left font-display font-bold text-base sm:text-lg text-roseBrand-dark">
+            <span>How does the 1-on-1 video call work?</span>
+            <i data-lucide="chevron-down" id="faq-2-icon" class="w-5 h-5 text-roseBrand-600 transition-transform"></i>
+          </button>
+          <div id="faq-2" class="hidden mt-3 text-sm sm:text-base text-roseBrand-textMuted leading-relaxed pt-3 border-t border-pinkPage-border">
+            We meet live on video. I demonstrate, watch your form, and correct your posture in real time.
+          </div>
+        </div>
+
+        <div class="pink-card rounded-2xl p-5 sm:p-6 border-2 border-pinkPage-border hover:border-roseBrand-400 expand-card">
+          <button onclick="toggleFaq('faq-3')" class="w-full flex items-center justify-between text-left font-display font-bold text-base sm:text-lg text-roseBrand-dark">
+            <span>I haven't run in years. Is Couch to 5K really safe?</span>
+            <i data-lucide="chevron-down" id="faq-3-icon" class="w-5 h-5 text-roseBrand-600 transition-transform"></i>
+          </button>
+          <div id="faq-3" class="hidden mt-3 text-sm sm:text-base text-roseBrand-textMuted leading-relaxed pt-3 border-t border-pinkPage-border">
+            Yes. We pair gentle run-walk intervals with leg and hip strength so your tendons and joints adapt.
+          </div>
+        </div>
+
+        <div class="pink-card rounded-2xl p-5 sm:p-6 border-2 border-pinkPage-border hover:border-roseBrand-400 expand-card">
+          <button onclick="toggleFaq('faq-4')" class="w-full flex items-center justify-between text-left font-display font-bold text-base sm:text-lg text-roseBrand-dark">
+            <span>What if my family or work schedule gets chaotic?</span>
+            <i data-lucide="chevron-down" id="faq-4-icon" class="w-5 h-5 text-roseBrand-600 transition-transform"></i>
+          </button>
+          <div id="faq-4" class="hidden mt-3 text-sm sm:text-base text-roseBrand-textMuted leading-relaxed pt-3 border-t border-pinkPage-border">
+            As a mum of two boys, I get it! Just WhatsApp me (+91 9880965627) — we shift days and keep things realistic so fitness never feels like a burden.
+          </div>
+        </div>
+
+      </div>
+
+    </div>
+  </section>
+
+  <!-- Section: Direct Contact Hub (Enlarged) -->
+  <section id="contact" class="py-20 px-4 sm:px-8 bg-pinkPage border-t border-pinkPage-border">
+    <div class="max-w-4xl mx-auto text-center">
+      
+      <div class="inline-flex items-center gap-2 px-4 py-1.5 rounded-full pink-gradient-pill text-xs sm:text-sm font-bold text-roseBrand-700 uppercase tracking-wider mb-4">
+        GET IN TOUCH
+      </div>
+
+      <h2 class="font-display font-black text-3xl sm:text-4xl md:text-5xl text-roseBrand-dark tracking-tight">
+        Ready to get started?
+      </h2>
+
+      <p class="mt-3 text-roseBrand-textMuted text-base sm:text-lg max-w-lg mx-auto font-medium">
+        Ping me. Let’s get stronger, run a little, laugh at ourselves occasionally, and enjoy the journey!
+      </p>
+
+      <!-- 3 Direct Action Tiles (Vibrant Colors & Clean Layout) -->
+      <div class="mt-10 grid grid-cols-1 md:grid-cols-3 gap-5 text-left">
+        
+        <!-- WhatsApp -->
+        <a href="https://wa.me/919880965627?text=Hi%20Deb!%20I'm%20reaching%20out%20from%20your%20website%20to%20ask%20about%20your%20coaching." target="_blank" class="p-6 rounded-3xl bg-gradient-to-br from-[#FFF8FA] via-[#ECFDF5] to-[#D1FAE5] border-2 border-emerald-300 hover:border-emerald-500 shadow-sm expand-card transition-all group flex flex-col justify-between">
+          <div>
+            <div class="w-12 h-12 rounded-2xl bg-emerald-100 text-emerald-800 flex items-center justify-center mb-4 group-hover:scale-110 transition-transform shadow-sm border border-emerald-200">
+              <i data-lucide="message-circle" class="w-6 h-6"></i>
+            </div>
+            <div class="font-display font-black text-xl text-roseBrand-dark">WhatsApp</div>
+            <div class="text-sm font-black text-emerald-800 mt-1">+91 9880965627</div>
+            <p class="text-xs sm:text-sm text-roseBrand-textMuted mt-1">Instant message Deb for direct booking or questions.</p>
+          </div>
+          <div class="mt-5 flex items-center gap-1.5 text-sm font-extrabold text-emerald-800 group-hover:translate-x-1 transition-transform">
+            <span>Text +91 9880965627</span>
+            <i data-lucide="arrow-up-right" class="w-4 h-4"></i>
+          </div>
+        </a>
+
+        <!-- Instagram -->
+        <a href="https://www.instagram.com/deb.ultrarunner/" target="_blank" class="p-6 rounded-3xl bg-gradient-to-br from-[#FFF8FA] via-[#FFF1F2] to-[#FFE4E6] border-2 border-pink-300 hover:border-pink-500 shadow-sm expand-card transition-all group flex flex-col justify-between">
+          <div>
+            <div class="w-12 h-12 rounded-2xl bg-roseBrand-100 text-roseBrand-800 flex items-center justify-center mb-4 group-hover:scale-110 transition-transform shadow-sm border border-pink-200">
+              <i data-lucide="instagram" class="w-6 h-6"></i>
+            </div>
+            <div class="font-display font-black text-xl text-roseBrand-dark">Instagram</div>
+            <div class="text-sm font-black text-roseBrand-700 mt-1">@deb.ultrarunner</div>
+            <p class="text-xs sm:text-sm text-roseBrand-textMuted mt-1">Follow daily workouts, training reels &amp; send a DM.</p>
+          </div>
+          <div class="mt-5 flex items-center gap-1.5 text-sm font-extrabold text-roseBrand-800 group-hover:translate-x-1 transition-transform">
+            <span>Follow @deb.ultrarunner</span>
+            <i data-lucide="arrow-up-right" class="w-4 h-4"></i>
+          </div>
+        </a>
+
+        <!-- Email (Opens directly in Gmail) -->
+        <a href="https://mail.google.com/mail/?view=cm&fs=1&to=ghosh.debashreea@gmail.com&su=Hello%20Deb%20-%20Training%20Inquiry&body=Hi%20Deb,%20I'm%20reaching%20out%20from%20your%20website%20to%20learn%20more%20about%20your%20training%20programs." target="_blank" rel="noopener noreferrer" class="p-6 rounded-3xl bg-gradient-to-br from-[#FFF8FA] via-[#FFF5F5] to-[#FED7D7] border-2 border-roseBrand-300 hover:border-roseBrand-600 shadow-sm expand-card transition-all group flex flex-col justify-between">
+          <div>
+            <div class="w-12 h-12 rounded-2xl bg-roseBrand-100 text-roseBrand-800 flex items-center justify-center mb-4 group-hover:scale-110 transition-transform shadow-sm border border-roseBrand-200">
+              <i data-lucide="mail" class="w-6 h-6"></i>
+            </div>
+            <div class="font-display font-black text-xl text-roseBrand-dark">Gmail / Email</div>
+            <div class="text-xs sm:text-sm font-black text-roseBrand-800 mt-1 break-all">ghosh.debashreea@gmail.com</div>
+            <p class="text-xs sm:text-sm text-roseBrand-textMuted mt-1">Opens directly in Gmail compose with Deb's address filled.</p>
+          </div>
+          <div class="mt-5 flex items-center gap-1.5 text-sm font-extrabold text-roseBrand-800 group-hover:translate-x-1 transition-transform">
+            <span>Compose on Gmail</span>
+            <i data-lucide="arrow-up-right" class="w-4 h-4"></i>
+          </div>
+        </a>
+
+      </div>
+
+      <!-- Quick Message Generator Form (WhatsApp or Gmail) -->
+      <div class="mt-10 p-6 sm:p-8 rounded-3xl bg-pinkPage-card border-2 border-pinkPage-border text-left max-w-xl mx-auto shadow-md expand-card">
+        <h4 class="font-display font-black text-xl sm:text-2xl text-roseBrand-dark mb-1">Quick Message to Deb</h4>
+        <p class="text-xs sm:text-sm text-roseBrand-textMuted mb-5">Choose whether to dispatch your inquiry instantly via WhatsApp (+91 9880965627) or open directly in Gmail compose.</p>
+        
+        <form onsubmit="handleQuickSubmit(event)" class="space-y-4">
+          <div>
+            <label class="block text-sm font-bold text-roseBrand-dark mb-1.5">Your Name</label>
+            <input type="text" id="quick-name" required placeholder="e.g. Maya" class="w-full px-4 py-3 rounded-xl bg-pinkPage-surface border border-pinkPage-border text-base text-roseBrand-dark focus:outline-none focus:border-roseBrand-600">
+          </div>
+          <div>
+            <label class="block text-sm font-bold text-roseBrand-dark mb-1.5">Interested Program</label>
+            <select id="quick-program" class="w-full px-4 py-3 rounded-xl bg-pinkPage-surface border border-pinkPage-border text-base text-roseBrand-dark focus:outline-none focus:border-roseBrand-600">
+              <option value="Online Functional Strength Training (One-on-One) - Beginner Favorite">Online Functional Strength Training (One-on-One) — Beginner Favorite</option>
+              <option value="Couch to 5K (12 Weeks)">Couch to 5K (12 Weeks)</option>
+              <option value="Couch to 10K (12 Weeks)">Couch to 10K (12 Weeks)</option>
+              <option value="General Question / Just saying hi!">General Question / Just saying hi!</option>
+            </select>
+          </div>
+          <div>
+            <label class="block text-sm font-bold text-roseBrand-dark mb-1.5">Message or Current Fitness Level</label>
+            <textarea id="quick-message" rows="3" placeholder="Tell me a bit about what you'd like to achieve..." class="w-full px-4 py-3 rounded-xl bg-pinkPage-surface border border-pinkPage-border text-base text-roseBrand-dark focus:outline-none focus:border-roseBrand-600"></textarea>
+          </div>
+          <div class="grid grid-cols-1 sm:grid-cols-2 gap-3 pt-2">
+            <button type="submit" class="w-full py-3.5 rounded-xl bg-roseBrand-600 hover:bg-roseBrand-700 text-white font-display font-black text-sm uppercase tracking-wider transition-all shadow-md flex items-center justify-center gap-2 expand-card">
+              <i data-lucide="message-circle" class="w-4 h-4"></i>
+              <span>Send via WhatsApp</span>
+            </button>
+            <button type="button" onclick="handleGmailSubmit()" class="w-full py-3.5 rounded-xl bg-white hover:bg-roseBrand-50 text-roseBrand-800 border-2 border-roseBrand-300 font-display font-black text-sm uppercase tracking-wider transition-all shadow-sm flex items-center justify-center gap-2 expand-card">
+              <i data-lucide="mail" class="w-4 h-4 text-roseBrand-600"></i>
+              <span>Send via Gmail</span>
+            </button>
+          </div>
+        </form>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer class="pt-10 pb-20 sm:pb-10 px-4 sm:px-8 bg-roseBrand-900 text-white text-sm">
+    <div class="max-w-6xl mx-auto flex flex-col sm:flex-row items-center justify-between gap-4 text-center sm:text-left">
+      <div class="flex items-center gap-3">
+        <div class="w-10 h-10 rounded-xl bg-neutral-950 flex items-center justify-center text-white shadow-sm border border-neutral-800 shrink-0">
+          <!-- Red "D" with Dumbbell through the center -->
+          <svg class="w-7 h-4" viewBox="0 0 106 50" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <rect x="7" y="17" width="6" height="16" fill="#FFFFFF"/>
+            <rect x="17" y="12" width="6" height="26" fill="#FFFFFF"/>
+            <rect x="23" y="21.5" width="14" height="7" fill="#FFFFFF"/>
+            <rect x="46" y="21.5" width="13" height="7" fill="#FFFFFF"/>
+            <rect x="68" y="21.5" width="16" height="7" fill="#FFFFFF"/>
+            <rect x="84" y="12" width="6" height="26" fill="#FFFFFF"/>
+            <rect x="94" y="17" width="6" height="16" fill="#FFFFFF"/>
+            <path fill-rule="evenodd" clip-rule="evenodd" d="M36 10H53C62.9411 10 71 16.7157 71 25C71 33.2843 62.9411 40 53 40H36V10ZM46 17.5V32.5H52.5C56.6421 32.5 60 29.1421 60 25C60 20.8579 56.6421 17.5 52.5 17.5H46Z" fill="#FF1E27"/>
+          </svg>
+        </div>
+        <div>
+          <span class="font-display font-black tracking-wide text-base">STRONG WITH DEB</span>
+          <p class="text-roseBrand-200 text-xs mt-0.5">Online Functional Strength &amp; Running Coaching &bull; Boston &amp; Sydney Marathoner 2026</p>
+        </div>
+      </div>
+      <div class="flex items-center gap-4 sm:gap-6 font-bold text-roseBrand-100 text-sm">
+        <a href="#about" class="hover:text-white transition-colors">Story</a>
+        <a href="#courses" class="hover:text-white transition-colors">Programs</a>
+        <a href="#faq" class="hover:text-white transition-colors">FAQs</a>
+        <a href="#contact" class="hover:text-white transition-colors">Contact</a>
+        <button onclick="triggerCaptchaTest()" class="hover:text-white transition-colors flex items-center gap-1 opacity-75 hover:opacity-100 text-xs" title="Test Security Gate">
+          <i data-lucide="shield-check" class="w-3.5 h-3.5 text-emerald-400"></i>
+          <span>Security</span>
+        </button>
+        <a href="#" class="hover:text-white transition-colors">Top &uarr;</a>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Mobile Floating Quick-Action Bar (Active on Phones only, thumb-friendly) -->
+  <div class="sm:hidden fixed bottom-3 left-3 right-3 z-40 bg-pinkPage-surface/95 backdrop-blur-md px-4 py-2.5 rounded-2xl border border-pinkPage-borderStrong shadow-xl flex items-center justify-between gap-2">
+    <a href="#courses" class="text-xs font-black uppercase text-roseBrand-800 tracking-wider flex items-center gap-1.5 py-1">
+      <i data-lucide="dumbbell" class="w-4 h-4 text-roseBrand-600"></i>
+      <span>Programs</span>
+    </a>
+    <a href="https://wa.me/919880965627?text=Hi%20Deb!%20I'm%20reaching%20out%20from%20your%20website." target="_blank" class="px-3.5 py-1.5 rounded-xl bg-emerald-600 hover:bg-emerald-700 text-white text-xs font-black uppercase tracking-wider flex items-center gap-1.5 shadow-md shadow-emerald-600/25">
+      <i data-lucide="message-circle" class="w-3.5 h-3.5"></i>
+      <span>WhatsApp</span>
+    </a>
+    <a href="https://mail.google.com/mail/?view=cm&fs=1&to=ghosh.debashreea@gmail.com&su=Hello%20Deb%20-%20Training%20Inquiry" target="_blank" class="text-xs font-black uppercase text-roseBrand-800 tracking-wider flex items-center gap-1.5 py-1">
+      <i data-lucide="mail" class="w-4 h-4 text-roseBrand-600"></i>
+      <span>Gmail</span>
+    </a>
+  </div>
+
+  <script>
+    // Initialize Lucide Icons
+    lucide.createIcons();
+
+    // 1. Interactive Cursor Radial Glow Tracking (Desktop only)
+    const glow = document.getElementById('cursor-glow');
+    if (glow && window.matchMedia('(hover: hover) and (pointer: fine)').matches) {
+      window.addEventListener('mousemove', (e) => {
+        glow.style.left = e.clientX + 'px';
+        glow.style.top = e.clientY + 'px';
+      });
+    }
+
+    // 2. Scroll Progress Bar Indicator
+    window.addEventListener('scroll', () => {
+      const winScroll = document.documentElement.scrollTop || document.body.scrollTop;
+      const height = document.documentElement.scrollHeight - document.documentElement.clientHeight;
+      const scrolled = (winScroll / height) * 100;
+      document.getElementById('scroll-progress').style.width = scrolled + '%';
+    });
+
+    // 3. FAQ Accordion Toggle
+    function toggleFaq(id) {
+      const content = document.getElementById(id);
+      const icon = document.getElementById(id + '-icon');
+      if (content.classList.contains('hidden')) {
+        content.classList.remove('hidden');
+        icon.classList.add('rotate-180');
+      } else {
+        content.classList.add('hidden');
+        icon.classList.remove('rotate-180');
+      }
+    }
+
+    // 4. WhatsApp Quick Launcher
+    function handleQuickSubmit(e) {
+      e.preventDefault();
+      const name = document.getElementById('quick-name').value;
+      const program = document.getElementById('quick-program').value;
+      const message = document.getElementById('quick-message').value;
+
+      const text = encodeURIComponent(`Hi Deb! My name is ${name}.\nI'm interested in: ${program}\n${message ? 'Notes: ' + message : ''}`);
+      window.open(`https://wa.me/919880965627?text=${text}`, '_blank');
+    }
+
+    // 5. Direct Gmail Web Compose Launcher
+    function handleGmailSubmit() {
+      const name = document.getElementById('quick-name').value || 'Visitor';
+      const program = document.getElementById('quick-program').value;
+      const message = document.getElementById('quick-message').value;
+
+      const subject = encodeURIComponent(`Training Inquiry: ${program}`);
+      const body = encodeURIComponent(`Hi Deb,\n\nMy name is ${name}.\nI am interested in: ${program}.\n\nMessage / Fitness Level:\n${message || 'I would like to know more about getting started!'}`);
+      
+      window.open(`https://mail.google.com/mail/?view=cm&fs=1&to=ghosh.debashreea@gmail.com&su=${subject}&body=${body}`, '_blank');
+    }
+
+    // 6. Mobile Dropdown Menu Toggle
+    function toggleMobileMenu() {
+      const menu = document.getElementById('mobile-menu');
+      const icon = document.getElementById('mobile-menu-icon');
+      if (menu.classList.contains('hidden')) {
+        menu.classList.remove('hidden');
+        icon.setAttribute('data-lucide', 'x');
+      } else {
+        menu.classList.add('hidden');
+        icon.setAttribute('data-lucide', 'menu');
+      }
+      lucide.createIcons();
+    }
+
+    // 7. Security CAPTCHA Verification Logic
+    let currentCaptchaCode = '';
+
+    function toggleCodeCaptcha() {
+      const container = document.getElementById('code-captcha-container');
+      const text = document.getElementById('code-toggle-text');
+      if (container.classList.contains('hidden')) {
+        container.classList.remove('hidden');
+        text.innerHTML = 'Close security code challenge &uarr;';
+        generateNewCaptchaCode();
+      } else {
+        container.classList.add('hidden');
+        text.innerHTML = 'Or enter security code challenge &darr;';
+      }
+    }
+
+    function generateNewCaptchaCode() {
+      const chars = '23456789ABCDEFGHJKLMNPQRSTUVWXYZ';
+      currentCaptchaCode = '';
+      for (let i = 0; i < 4; i++) {
+        currentCaptchaCode += chars.charAt(Math.floor(Math.random() * chars.length));
+      }
+      
+      const canvas = document.getElementById('captcha-canvas');
+      if (!canvas) return;
+      const ctx = canvas.getContext('2d');
+      ctx.clearRect(0, 0, canvas.width, canvas.height);
+      
+      // Canvas background
+      ctx.fillStyle = '#FFF5F8';
+      ctx.fillRect(0, 0, canvas.width, canvas.height);
+      
+      // Distortion lines
+      for (let i = 0; i < 4; i++) {
+        ctx.strokeStyle = `rgba(244, 63, 94, ${0.15 + Math.random() * 0.25})`;
+        ctx.lineWidth = 1.5;
+        ctx.beginPath();
+        ctx.moveTo(Math.random() * canvas.width, Math.random() * canvas.height);
+        ctx.lineTo(Math.random() * canvas.width, Math.random() * canvas.height);
+        ctx.stroke();
+      }
+      
+      // Characters with rotation
+      for (let i = 0; i < currentCaptchaCode.length; i++) {
+        ctx.save();
+        ctx.font = 'bold 22px sans-serif';
+        ctx.fillStyle = '#9F1239';
+        const x = 16 + i * 26;
+        const y = 28 + (Math.random() * 6 - 3);
+        const angle = (Math.random() * 24 - 12) * Math.PI / 180;
+        ctx.translate(x, y);
+        ctx.rotate(angle);
+        ctx.fillText(currentCaptchaCode[i], 0, 0);
+        ctx.restore();
+      }
+      
+      const input = document.getElementById('captcha-input');
+      if (input) input.value = '';
+      const err = document.getElementById('captcha-error-msg');
+      if (err) err.classList.add('hidden');
+    }
+
+    function playVerifyChime() {
+      try {
+        const AudioContext = window.AudioContext || window.webkitAudioContext;
+        if (!AudioContext) return;
+        const ctx = new AudioContext();
+        const osc = ctx.createOscillator();
+        const gain = ctx.createGain();
+        osc.type = 'sine';
+        osc.frequency.setValueAtTime(587.33, ctx.currentTime);
+        osc.frequency.exponentialRampToValueAtTime(880, ctx.currentTime + 0.15);
+        gain.gain.setValueAtTime(0.12, ctx.currentTime);
+        gain.gain.exponentialRampToValueAtTime(0.001, ctx.currentTime + 0.35);
+        osc.connect(gain);
+        gain.connect(ctx.destination);
+        osc.start();
+        osc.stop(ctx.currentTime + 0.35);
+      } catch (e) {}
+    }
+
+    function unlockCaptcha() {
+      playVerifyChime();
+      sessionStorage.setItem('deb_captcha_passed', 'true');
+      const overlay = document.getElementById('captcha-overlay');
+      overlay.classList.add('opacity-0', 'pointer-events-none');
+      setTimeout(() => {
+        overlay.style.display = 'none';
+        document.body.style.overflow = '';
+      }, 450);
+    }
+
+    function handleCaptchaCheck() {
+      const btn = document.getElementById('captcha-checkbox-btn');
+      const spinner = document.getElementById('captcha-spinner');
+      const checkIcon = document.getElementById('captcha-check-icon');
+      const statusText = document.getElementById('captcha-status-text');
+      const box = document.getElementById('captcha-widget-box');
+
+      if (btn.disabled) return;
+      btn.disabled = true;
+
+      spinner.classList.remove('hidden');
+
+      setTimeout(() => {
+        spinner.classList.add('hidden');
+        checkIcon.classList.remove('hidden');
+        btn.classList.remove('bg-white', 'border-slate-300');
+        btn.classList.add('bg-emerald-50', 'border-emerald-500');
+        box.classList.remove('bg-[#FFF8FA]', 'border-roseBrand-200');
+        box.classList.add('bg-emerald-50/70', 'border-emerald-300');
+        statusText.innerHTML = '<span class="text-emerald-700 font-black">Verification complete!</span>';
+        lucide.createIcons();
+
+        setTimeout(() => {
+          unlockCaptcha();
+        }, 350);
+      }, 850);
+    }
+
+    function verifyTextCaptcha() {
+      const input = document.getElementById('captcha-input').value.trim().toUpperCase();
+      const errorMsg = document.getElementById('captcha-error-msg');
+      if (input === currentCaptchaCode) {
+        unlockCaptcha();
+      } else {
+        errorMsg.classList.remove('hidden');
+        const box = document.getElementById('code-captcha-container');
+        box.classList.add('animate-shake');
+        setTimeout(() => box.classList.remove('animate-shake'), 400);
+        generateNewCaptchaCode();
+      }
+    }
+
+    function triggerCaptchaTest() {
+      sessionStorage.removeItem('deb_captcha_passed');
+      const overlay = document.getElementById('captcha-overlay');
+      overlay.style.display = 'flex';
+      setTimeout(() => {
+        overlay.classList.remove('opacity-0', 'pointer-events-none');
+      }, 10);
+      document.body.style.overflow = 'hidden';
+      
+      const btn = document.getElementById('captcha-checkbox-btn');
+      btn.disabled = false;
+      btn.classList.remove('bg-emerald-50', 'border-emerald-500');
+      btn.classList.add('bg-white', 'border-slate-300');
+      document.getElementById('captcha-spinner').classList.add('hidden');
+      document.getElementById('captcha-check-icon').classList.add('hidden');
+      document.getElementById('captcha-widget-box').classList.remove('bg-emerald-50/70', 'border-emerald-300');
+      document.getElementById('captcha-widget-box').classList.add('bg-[#FFF8FA]', 'border-roseBrand-200');
+      document.getElementById('captcha-status-text').textContent = 'I am not a robot';
+      generateNewCaptchaCode();
+      lucide.createIcons();
+    }
+
+    // Initialize CAPTCHA state on page load
+    window.addEventListener('DOMContentLoaded', () => {
+      if (sessionStorage.getItem('deb_captcha_passed') === 'true') {
+        const overlay = document.getElementById('captcha-overlay');
+        overlay.style.display = 'none';
+        document.body.style.overflow = '';
+      } else {
+        document.body.style.overflow = 'hidden';
+        generateNewCaptchaCode();
+      }
+    });
+  </script>
+</body>
+</html>
